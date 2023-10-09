@@ -1,5 +1,6 @@
-import 'package:appweather/API/classWeather.dart';
 import 'package:flutter/material.dart';
+
+import '../api/api_service.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});

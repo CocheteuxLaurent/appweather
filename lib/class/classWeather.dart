@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-//import 'package:appweather/api/api_service.dart';
 
 class Weather {
-  String? date;
-  String? weatherCity;
+  String? cityName;
   String? details;
-  double? temp;
-  Icon? icon;
+  int? temp;
+  String? icon;
 
-  Weather({this.date, this.weatherCity, this.details, this.temp, this.icon});
+  Weather({this.cityName, this.details, this.temp, this.icon});
 
   factory Weather.fromJson(Map<String, dynamic> json) {
     return Weather(
-      date: json["date"],
-      weatherCity: json["weather"],
-      details: json["details"],
-      icon: json["icon"],
-    );
+        cityName: json["weather"]["name"],
+        details: json["weather"]["details"],
+        icon: json["weather"]["icon"],
+        temp: int.parse(json["weather"]["main"]["temp"]));
   }
 }
