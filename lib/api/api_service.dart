@@ -10,6 +10,7 @@ class WeatherFunction {
 
     if (response.statusCode == 200) {
       // var body = jsonDecode(response.body);
+      print(response.body);
       return Weather.fromJson(jsonDecode(response.body));
     } else {
       throw Exception("Une erreur est survenue !!!!");

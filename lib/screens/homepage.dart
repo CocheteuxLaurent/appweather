@@ -1,3 +1,4 @@
+import 'package:appweather/class/classWeather.dart';
 import 'package:flutter/material.dart';
 
 import '../api/api_service.dart';
@@ -12,11 +13,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //instance de la class
+  var weatherFunction = WeatherFunction.getWeather("Valenciennes");
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    WeatherFunction.getWeather("Valenciennes");
   }
 
   @override
@@ -26,7 +27,22 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: [],
+        children: [
+          Text(widget.title),
+          FutureBuilder(
+            future: weatherFunction,
+            builder: (context, snap) {
+              print(snap.data?.id); //test d'affiche des données
+              var id = snap.data?.id;
+              var description = snap.data?.description;
+              return Container(
+                child: Text(
+                  description.toString(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
