@@ -36,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
               var main = snap.data?.main;
               var icon = snap.data?.icon;
               var description = snap.data?.description;
+              var temp = snap.data?.temp;
               return /*
               Container(
                 child: Text(
@@ -50,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     Image.asset(
                       "assets/$icon.png",
                       scale: 4,
+                      height: 90,
+                      width: 90,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -67,6 +70,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Text(
                             description.toString(),
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            temp.toString(),
                             style: const TextStyle(fontSize: 12),
                           ),
                         ],
