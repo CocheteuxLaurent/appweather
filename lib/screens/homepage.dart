@@ -1,6 +1,7 @@
 import 'package:appweather/class/classWeather.dart';
 import 'package:flutter/material.dart';
 import 'package:appweather/components/bottom_bar.dart';
+import 'package:appweather/components/weather_card.dart';
 
 import '../api/api_service.dart';
 
@@ -29,6 +30,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
+          WeatherCard(),
+          /*
           FutureBuilder(
             future: weatherFunction,
             builder: (context, snap) {
@@ -54,8 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     Image.asset(
                       "assets/$icon.png",
                       scale: 4,
-                      height: 90,
-                      width: 90,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +96,10 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             },
           ),
-          Expanded(child: BottomBar()),
+          */
+          Expanded(
+            child: BottomBar(),
+          ),
         ],
       ),
     );

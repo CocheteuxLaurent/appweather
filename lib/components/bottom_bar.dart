@@ -25,9 +25,10 @@ class _BottomBarState extends State<BottomBar> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: DotNavigationBar(
+          backgroundColor: const Color.fromRGBO(239, 241, 243, 1),
           margin: const EdgeInsets.only(right: 6, left: 6),
           currentIndex: _SelectedIndex.values.indexOf(_selectedIndex),
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: const Color.fromARGB(255, 165, 165, 165),
           splashBorderRadius: 50,
           onTap: _handleIndexChanged,
           items: [
