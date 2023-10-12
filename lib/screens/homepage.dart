@@ -1,5 +1,6 @@
 import 'package:appweather/class/classWeather.dart';
 import 'package:flutter/material.dart';
+import 'package:appweather/components/bottom_bar.dart';
 
 import '../api/api_service.dart';
 
@@ -37,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
               var icon = snap.data?.icon;
               var description = snap.data?.description;
               var temp = snap.data?.temp;
+              var humidity = snap.data?.humidity;
               return /*
               Container(
                 child: Text(
@@ -79,11 +81,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
+                    Row(
+                      children: [
+                        Text(
+                          humidity.toString(),
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               );
             },
           ),
+          //BottomBar(),
         ],
       ),
     );
