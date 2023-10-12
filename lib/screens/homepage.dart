@@ -35,7 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
               print(snap.data?.id); //test d'affiche des données
               //var id = snap.data?.id;
               var main = snap.data?.main;
-              var icon = snap.data?.icon;
+              var icon = snap.data?.icon ??
+                  "loading"; //image loading ajoutée temporairement
               var description = snap.data?.description;
               var temp = snap.data?.temp;
               var humidity = snap.data?.humidity;
@@ -94,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             },
           ),
-          //BottomBar(),
+          Expanded(child: BottomBar()),
         ],
       ),
     );

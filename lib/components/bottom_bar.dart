@@ -11,11 +11,11 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
-    var _SelectedIndex;
+    var _selectedIndex = _SelectedIndex.home;
 
     void _handleIndexChanged(int i) {
       setState(() {
-        _SelectedIndex = _SelectedIndex.values[i];
+        _selectedIndex = _SelectedIndex.values[i];
       });
     }
 
@@ -25,19 +25,19 @@ class _BottomBarState extends State<BottomBar> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: DotNavigationBar(
-          margin: EdgeInsets.only(right: 6, left: 6),
-          currentIndex: _SelectedIndex.values.indexOf(_SelectedIndex),
+          margin: const EdgeInsets.only(right: 6, left: 6),
+          currentIndex: _SelectedIndex.values.indexOf(_selectedIndex),
           unselectedItemColor: Colors.grey,
           splashBorderRadius: 50,
           onTap: _handleIndexChanged,
           items: [
             DotNavigationBarItem(
-              icon: Icon(Icons.home),
-              selectedColor: Color.fromRGBO(3, 163, 232, 1),
+              icon: const Icon(Icons.home),
+              selectedColor: const Color.fromRGBO(3, 163, 232, 1),
             ),
             DotNavigationBarItem(
-              icon: Icon(Icons.search),
-              selectedColor: Color.fromRGBO(3, 163, 232, 1),
+              icon: const Icon(Icons.search),
+              selectedColor: const Color.fromRGBO(3, 163, 232, 1),
             ),
           ],
         ),
