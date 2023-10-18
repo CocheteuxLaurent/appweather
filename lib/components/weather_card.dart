@@ -18,46 +18,50 @@ class _WeatherCardState extends State<WeatherCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: weatherFunction,
-        builder: (context, snap) {
-          print(snap.data?.id); //test d'affiche des données
-          //var id = snap.data?.id;
-          var main = snap.data?.main;
-          var icon = snap.data?.icon ??
-              "loading"; //image loading ajoutée temporairement
-          var description = snap.data?.description;
-          var temp = snap.data?.temp;
-          var humidity = snap.data?.humidity;
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            color: const Color.fromRGBO(239, 241, 243, 1),
-            child: SizedBox(
-              height: 100,
-              width: 300,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        "assets/$icon.png",
-                        scale: 4,
-                        height: 50,
-                        width: 50,
+    return FutureBuilder(
+      future: weatherFunction,
+      builder: (context, snap) {
+        print(snap.data?.id); //test d'affiche des données
+        //var id = snap.data?.id;
+        var main = snap.data?.main;
+        var icon =
+            snap.data?.icon ?? "loading"; //image loading ajoutée temporairement
+        var description = snap.data?.description;
+        var temp = snap.data?.temp;
+        var humidity = snap.data?.humidity;
+        return Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          color: const Color.fromRGBO(239, 241, 243, 1),
+          child: SizedBox(
+            width: 300,
+            height: 50,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Image.asset(
+                      "assets/$icon.png",
+                      scale: 4,
+                      height: 50,
+                      width: 50,
+                    ),
+                    Text(
+                      main.toString(),
+                      style: const TextStyle(fontSize: 13),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Text(
+                        temp.toString(),
+                        style: const TextStyle(fontSize: 13),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          main.toString(),
-                          style: const TextStyle(fontSize: 13),
-                        ),
-                      ),
-                    ],
-                  )
-                  /*
+                    ),
+                  ],
+                )
+                /*
                   Row(
                     children: [
                       Image.asset(
@@ -85,7 +89,7 @@ class _WeatherCardState extends State<WeatherCard> {
                     ],
                   ),
                 */
-                  /*  
+                /*  
                   Expanded(
                     child: Image.asset(
                       "assets/$icon.png",
@@ -126,12 +130,11 @@ class _WeatherCardState extends State<WeatherCard> {
                     ],
                   ),
                   */
-                ],
-              ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
