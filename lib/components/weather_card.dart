@@ -45,29 +45,46 @@ class _WeatherCardState extends State<WeatherCard> {
                       Image.asset(
                         "assets/$icon.png",
                         scale: 4,
+                        height: 50,
+                        width: 50,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          main.toString(),
+                          style: const TextStyle(fontSize: 13),
+                        ),
                       ),
                     ],
-                  ),
-                  Column(
+                  )
+                  /*
+                  Row(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            main.toString(),
-                            style: const TextStyle(fontSize: 13),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 6, left: 6),
-                            child: Text(
-                              temp.toString(),
-                              style: const TextStyle(fontSize: 13),
-                            ),
-                          ),
-                        ],
+                      Image.asset(
+                        "assets/$icon.png",
+                        scale: 4,
+                        height: 50,
+                        width: 50,
                       ),
                     ],
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        main.toString(),
+                        style: const TextStyle(fontSize: 13),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 6, left: 6),
+                        child: Text(
+                          temp.toString(),
+                          style: const TextStyle(fontSize: 13),
+                        ),
+                      ),
+                    ],
+                  ),
+                */
                   /*  
                   Expanded(
                     child: Image.asset(
