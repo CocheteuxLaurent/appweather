@@ -30,7 +30,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          Expanded(child: WeatherCard()),
+          Expanded(
+            child: WeatherCard(),
+          ),
           Expanded(
             child: BottomBar(),
           ),

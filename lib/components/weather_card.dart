@@ -31,12 +31,44 @@ class _WeatherCardState extends State<WeatherCard> {
           var temp = snap.data?.temp;
           var humidity = snap.data?.humidity;
           return Card(
-            color: Color.fromRGBO(239, 241, 243, 1),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            color: const Color.fromRGBO(239, 241, 243, 1),
             child: SizedBox(
               height: 100,
               width: 300,
               child: Column(
                 children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        "assets/$icon.png",
+                        scale: 4,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            main.toString(),
+                            style: const TextStyle(fontSize: 13),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 6, left: 6),
+                            child: Text(
+                              temp.toString(),
+                              style: const TextStyle(fontSize: 13),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  /*  
                   Expanded(
                     child: Image.asset(
                       "assets/$icon.png",
@@ -76,6 +108,7 @@ class _WeatherCardState extends State<WeatherCard> {
                       ),
                     ],
                   ),
+                  */
                 ],
               ),
             ),
