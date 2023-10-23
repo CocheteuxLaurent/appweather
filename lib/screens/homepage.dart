@@ -2,7 +2,7 @@ import 'package:appweather/class/classWeather.dart';
 import 'package:flutter/material.dart';
 import 'package:appweather/components/bottom_bar.dart';
 import 'package:appweather/components/weather_card.dart';
-import 'package:geolocator/geolocator.dart ';
+import 'package:geolocator/geolocator.dart';
 
 import '../api/api_service.dart';
 
@@ -61,7 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
-      setState(() => _currentPosition = position);
+      setState(
+        () => _currentPosition = position,
+      );
+      debugPrint(_currentPosition.toString());
     }).catchError((e) {
       debugPrint(e);
     });
