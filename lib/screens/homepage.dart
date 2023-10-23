@@ -19,14 +19,13 @@ class _MyHomePageState extends State<MyHomePage> {
   //instance de la class
   var weatherFunction = WeatherFunction.getWeather("Valenciennes");
 
-  Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-
+  //Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   Position? _currentPosition;
 
   @override
   void initState() {
     super.initState();
+    _getCurrentPosition();
   }
 
   Future<bool> _handleLocationPermission() async {
@@ -80,6 +79,24 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
             child: WeatherCard(),
           ),
+          /*
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                _currentPosition!.longitude.toString(),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                _currentPosition!.latitude.toString(),
+              ),
+            ],
+          ),
+          */
           Expanded(
             child: BottomBar(),
           ),
