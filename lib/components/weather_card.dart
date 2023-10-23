@@ -3,14 +3,22 @@ import 'package:appweather/class/classWeather.dart';
 import '../api/api_service.dart';
 
 class WeatherCard extends StatefulWidget {
-  WeatherCard();
+  late String lat;
+  late String long;
+  WeatherCard({
+    this.lat,
+    this.long,
+  });
 
   @override
   _WeatherCardState createState() => _WeatherCardState();
 }
 
 class _WeatherCardState extends State<WeatherCard> {
-  var weatherFunction = WeatherFunction.getWeather("Valenciennes");
+  var weatherFunction = WeatherFunction.getWeather(
+    lat.toString(),
+    widget.long.toString(),
+  );
   @override
   void initState() {
     super.initState();
@@ -29,6 +37,7 @@ class _WeatherCardState extends State<WeatherCard> {
         var description = snap.data?.description;
         var temp = snap.data?.temp;
         var humidity = snap.data?.humidity;
+        //var latitude = snap.data?.latitude;
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

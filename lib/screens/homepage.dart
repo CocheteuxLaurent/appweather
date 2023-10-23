@@ -17,7 +17,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   //instance de la class
-  var weatherFunction = WeatherFunction.getWeather("Valenciennes");
 
   //Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   Position? _currentPosition;
@@ -77,7 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           Expanded(
-            child: WeatherCard(),
+            child: WeatherCard(
+                lat: _currentPosition!.longitude.toString(),
+                long: _currentPosition!.latitude.toString()),
           ),
           /*
           Row(
