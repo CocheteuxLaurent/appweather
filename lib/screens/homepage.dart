@@ -18,7 +18,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //instance de la class
 
-  //Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   Position? _currentPosition;
 
   @override
@@ -73,11 +72,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Weather App'),
-      ),
-      body: Column(
+        backgroundColor: Color.fromRGBO(213, 222, 255, 1),
+        body: FutureBuilder(
+          future: WeatherFunction.getWeather(
+              widget.lat.toString(), widget.long.toString()),
+          builder: (context, snap) {
+            var cityname = snap.data?.name;
+            return Column(
+              children: [],
+            );
+          },
+        )
+        /*
+      Column(
         children: [
+          
           Expanded(
             child: WeatherCard(
                 lat: _currentPosition!.longitude.toString(),
@@ -104,8 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
             child: BottomBar(),
           ),
+         
         ],
-      ),
-    );
+         */
+        );
   }
 }
