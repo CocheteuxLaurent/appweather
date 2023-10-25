@@ -5,6 +5,7 @@ class Weather {
   String? icon;
   double? temp;
   int? humidity;
+  String? country;
 
   Weather({
     this.id,
@@ -13,6 +14,7 @@ class Weather {
     this.icon,
     this.temp,
     this.humidity,
+    this.country,
   });
 
   factory Weather.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class Weather {
       icon: json["weather"][0]["icon"],
       temp: json["main"]["temp"] as double,
       humidity: json["main"]["humidity"] as int,
+      country: json["sys"]["country"] as String,
     );
   }
 }

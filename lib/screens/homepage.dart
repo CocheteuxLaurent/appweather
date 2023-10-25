@@ -17,13 +17,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   //instance de la class
-
+  var _currentCity;
   Position? _currentPosition;
 
   @override
   void initState() {
     super.initState();
     _getCurrentPosition();
+  }
+
+  Future getCity() async {
+    await WeatherFunction.getWeather(
+      _currentPosition!.latitude.toString(),
+      _currentPosition!.latitude.toString(),
+    ).then((value) => {_currentCity = value.country.toString()});
+    // print('helllo');
   }
 
   Future<bool> _handleLocationPermission() async {
@@ -64,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         () => _currentPosition = position,
       );
       debugPrint(_currentPosition.toString());
+      getCity();
     }).catchError((e) {
       debugPrint(e);
     });
@@ -72,18 +81,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(213, 222, 255, 1),
-        body: FutureBuilder(
-          future: WeatherFunction.getWeather(
-              widget.lat.toString(), widget.long.toString()),
-          builder: (context, snap) {
-            var cityname = snap.data?.name;
-            return Column(
-              children: [],
-            );
-          },
-        )
-        /*
+      backgroundColor: Color.fromRGBO(213, 222, 255, 1),
+      appBar: AppBar(
+        title: Text(_currentCity ?? "wait"),
+      ),
+      body: FutureBuilder(
+        future: WeatherFunction.getWeather("", ''),
+        builder: (BuildContext context, AsyncSnapshot<Weather> snapshot) {
+          //  widget.lat.toString(), widget.long.toString()),
+          // var cityname = snap.data?.name;
+          return Column(
+            children: [],
+          );
+        },
+      ),
+      /*
       Column(
         children: [
           
@@ -116,6 +128,6 @@ class _MyHomePageState extends State<MyHomePage> {
          
         ],
          */
-        );
+    );
   }
 }
