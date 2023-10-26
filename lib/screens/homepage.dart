@@ -1,7 +1,5 @@
 import 'package:appweather/class/classWeather.dart';
 import 'package:flutter/material.dart';
-import 'package:appweather/components/bottom_bar.dart';
-import 'package:appweather/components/weather_card.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../api/api_service.dart';
@@ -30,7 +28,14 @@ class _MyHomePageState extends State<MyHomePage> {
     await WeatherFunction.getWeather(
       _currentPosition!.latitude.toString(),
       _currentPosition!.latitude.toString(),
-    ).then((value) => {_currentCity = value.country.toString()});
+    ).then(
+      (value) => {
+        _currentCity = value.countryName.toString(),
+      },
+    );
+    setState(() {
+      _currentCity;
+    });
     // print('helllo');
   }
 
@@ -81,9 +86,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(213, 222, 255, 1),
+      backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
       appBar: AppBar(
         title: Text(_currentCity ?? "wait"),
+        centerTitle: true,
       ),
       body: FutureBuilder(
         future: WeatherFunction.getWeather("", ''),
