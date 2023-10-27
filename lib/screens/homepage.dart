@@ -91,6 +91,41 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(_currentCity ?? "wait"),
         centerTitle: true,
       ),
+      endDrawer: Drawer(
+        backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
+        child: ListView(
+          children: [
+            /*DrawerHeader(
+              child: Row(
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: Icon(Icons.close),
+                    label: Text('Fermer'),
+                  ),
+                ],
+              ),
+            ),
+            */
+            ListTile(
+              title: const Text('Accueil'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Prochain jours'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Lieux enregistrés'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Rechercher'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       body: FutureBuilder(
         future: WeatherFunction.getWeather("", ''),
         builder: (BuildContext context, AsyncSnapshot<Weather> snapshot) {
