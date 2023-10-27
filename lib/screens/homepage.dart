@@ -1,4 +1,7 @@
 import 'package:appweather/class/classWeather.dart';
+import 'package:appweather/screens/nextday.dart';
+import 'package:appweather/screens/registeredlocations.dart';
+import 'package:appweather/screens/search.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -16,6 +19,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //instance de la class
   var _currentCity;
+  var _currentCountry;
   Position? _currentPosition;
 
   @override
@@ -31,10 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
     ).then(
       (value) => {
         _currentCity = value.countryName.toString(),
+        _currentCountry = value.country.toString(),
       },
     );
     setState(() {
       _currentCity;
+      _currentCountry;
     });
     // print('helllo');
   }
@@ -88,40 +94,101 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
       appBar: AppBar(
-        title: Text(_currentCity ?? "wait"),
+        elevation: 0,
+        title: Text(
+          _currentCity + ',' + ' ' + _currentCountry ?? "loading",
+          style: const TextStyle(
+            fontFamily: 'Inter',
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
       ),
       endDrawer: Drawer(
+        width: 200,
         backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
+        surfaceTintColor: Colors.black,
         child: ListView(
           children: [
-            /*DrawerHeader(
+            DrawerHeader(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.close),
-                    label: Text('Fermer'),
+                  SizedBox(
+                    height: 45,
+                    width: 45,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Icon(Icons.nightlight_outlined),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 45,
+                    width: 45,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Icon(Icons.close),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            */
             ListTile(
               title: const Text('Accueil'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyHomePage(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text('Prochain jours'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NextDayPage(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text('Lieux enregistrés'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RegisteredLocationsPage(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text('Rechercher'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SearchPage(),
+                  ),
+                );
+              },
             ),
           ],
         ),
