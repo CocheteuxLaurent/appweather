@@ -22,9 +22,13 @@ class _NextDayPageState extends State<NextDayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
       appBar: AppBar(
-        leading: const Icon(
-          Icons.arrow_back,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
           color: Colors.black,
         ),
         elevation: 0,
