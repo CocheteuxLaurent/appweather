@@ -24,6 +24,7 @@ class _RegisteredLocationsPageState extends State<RegisteredLocationsPage> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

@@ -22,6 +22,8 @@ class _MyHomePageState extends State<MyHomePage> {
   var _currentCountry;
   Position? _currentPosition;
 
+  bool isSelected = true;
+
   @override
   void initState() {
     super.initState();
@@ -94,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
         elevation: 0,
         title: Text(
           _currentCity + ',' + ' ' + _currentCountry ?? "loading",
@@ -110,7 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
       endDrawer: Drawer(
         width: 200,
         backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
-        surfaceTintColor: Colors.black,
         child: ListView(
           children: [
             DrawerHeader(
@@ -126,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       child: InkWell(
                         onTap: () {},
-                        child: Icon(Icons.nightlight_outlined),
+                        child: const Icon(Icons.nightlight_outlined),
                       ),
                     ),
                   ),
@@ -138,7 +140,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                         child: Icon(Icons.close),
                       ),
                     ),
