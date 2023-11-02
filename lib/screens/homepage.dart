@@ -1,4 +1,5 @@
 import 'package:appweather/class/classWeather.dart';
+import 'package:appweather/components/weather_card.dart';
 import 'package:appweather/screens/nextday.dart';
 import 'package:appweather/screens/registeredlocations.dart';
 import 'package:appweather/screens/search.dart';
@@ -197,7 +198,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: FutureBuilder(
+      body: Column(
+        children: [
+          WeatherCard(
+            lat: _currentPosition!.longitude.toString(),
+            long: _currentPosition!.latitude.toString(),
+          ),
+          /*
+      FutureBuilder(
         future: WeatherFunction.getWeather("", ''),
         builder: (BuildContext context, AsyncSnapshot<Weather> snapshot) {
           //  widget.lat.toString(), widget.long.toString()),
@@ -207,15 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         },
       ),
-      /*
-      Column(
-        children: [
-          
-          Expanded(
-            child: WeatherCard(
-                lat: _currentPosition!.longitude.toString(),
-                long: _currentPosition!.latitude.toString()),
-          ),
+      */
           /*
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -234,12 +234,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           */
-          Expanded(
-            child: BottomBar(),
-          ),
-         
         ],
-         */
+      ),
     );
   }
 }

@@ -20,6 +20,11 @@ class _WeatherCardState extends State<WeatherCard> {
     super.initState();
   }
 
+  final date = DateTime.now();
+
+  final formattedDate =
+      '${_getDate(DateTime.now())} ${_getFormattedTime(DateTime.now())}';
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -38,11 +43,42 @@ class _WeatherCardState extends State<WeatherCard> {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "asset/$icon.png",
+                  height: 50,
+                  width: 50,
+                  scale: 4,
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    temp.toString(),
+                    style: const TextStyle(
+                      fontSize: 25,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              formattedDate,
+            )
+            /*
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              color: const Color.fromRGBO(239, 241, 243, 1),
+              color: const Color.fromRGBO(213, 222, 255, 1),
               child: SizedBox(
                 width: 300,
                 height: 80,
@@ -115,9 +151,49 @@ class _WeatherCardState extends State<WeatherCard> {
                 ),
               ),
             ),
+            */
           ],
         );
       },
     );
   }
+}
+
+String _getDate(DateTime dateTime) {
+  final day = dateTime.day;
+  final month = dateTime.month;
+  final monthNames = const [
+    'Janvier',
+    'Février',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre'
+  ];
+
+  final dayNames = const [
+    'Lundi',
+    'Mardi',
+    'Mercredi',
+    'Jeudi',
+    'Vendredi',
+    'Samedi',
+    'Dimanche',
+  ];
+
+  final dayOfWeek = dayNames[dateTime.weekday - 1].substring(0, 3);
+
+  return '$dayOfWeek $day ${monthNames[month - 1].substring(0, 3)}' + '.' + ' ';
+}
+
+String _getFormattedTime(DateTime dateTime) {
+  final hour = dateTime.hour.toString().padLeft(2, '0');
+  final minute = dateTime.minute.toString().padLeft(2, '0');
+  return '$hour:$minute';
 }
