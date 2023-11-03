@@ -22,8 +22,9 @@ class _WeatherCardState extends State<WeatherCard> {
 
   final date = DateTime.now();
 
-  final formattedDate =
-      '${_getDate(DateTime.now())} ${_getFormattedTime(DateTime.now())}';
+  final formattedDate = '${_getDate(DateTime.now())}';
+
+  final formattedTime = '${_getFormattedTime(DateTime.now())}';
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +71,34 @@ class _WeatherCardState extends State<WeatherCard> {
                 ],
               ),
             ),
-            Text(
-              formattedDate,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  formattedDate + '.',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const Text(
+                  '  ',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Text(
+                  formattedTime,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
             )
             /*
             Card(
@@ -162,7 +189,7 @@ class _WeatherCardState extends State<WeatherCard> {
 String _getDate(DateTime dateTime) {
   final day = dateTime.day;
   final month = dateTime.month;
-  final monthNames = const [
+  const monthNames = [
     'Janvier',
     'Février',
     'Mars',
@@ -177,7 +204,7 @@ String _getDate(DateTime dateTime) {
     'Décembre'
   ];
 
-  final dayNames = const [
+  const dayNames = [
     'Lundi',
     'Mardi',
     'Mercredi',
@@ -189,11 +216,11 @@ String _getDate(DateTime dateTime) {
 
   final dayOfWeek = dayNames[dateTime.weekday - 1].substring(0, 3);
 
-  return '$dayOfWeek $day ${monthNames[month - 1].substring(0, 3)}' + '.' + ' ';
+  return '$dayOfWeek $day ${monthNames[month - 1].substring(0, 3)}';
 }
 
 String _getFormattedTime(DateTime dateTime) {
   final hour = dateTime.hour.toString().padLeft(2, '0');
   final minute = dateTime.minute.toString().padLeft(2, '0');
-  return '$hour:$minute';
+  return '$hour' + 'h' + '$minute';
 }
