@@ -18,6 +18,9 @@ class _WeatherCardState extends State<WeatherCard> {
   @override
   void initState() {
     super.initState();
+    print("Lat");
+
+    print(widget.lat.toString());
   }
 
   final date = DateTime.now();
@@ -39,6 +42,11 @@ class _WeatherCardState extends State<WeatherCard> {
             snap.data?.icon ?? "loading"; //image loading ajoutée temporairement
         var description = snap.data?.description;
         var temp = snap.data?.temp;
+        print(description.toString());
+        print("descr");
+        print(temp.toString());
+
+        print('hello');
         var humidity = snap.data?.humidity;
         //var latitude = snap.data?.latitude;
         return Column(
@@ -47,12 +55,12 @@ class _WeatherCardState extends State<WeatherCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  "asset/$icon.png",
-                  height: 50,
-                  width: 50,
-                  scale: 4,
-                ),
+                // Image.asset(
+                //   "asset/$icon.png",
+                //   height: 50,
+                //   width: 50,
+                //   scale: 4,
+                // ),
               ],
             ),
             Padding(

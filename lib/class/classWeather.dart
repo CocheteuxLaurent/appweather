@@ -25,7 +25,7 @@ class Weather {
         main: json["weather"][0]["main"] as String,
         description: json["weather"][0]["description"] as String,
         icon: json["weather"][0]["icon"],
-        temp: json["main"]["temp"] as double,
+        temp: json["main"]["temp"],
         humidity: json["main"]["humidity"] as int,
         country: json["sys"]["country"] as String,
         countryName: json["name"] as String);
