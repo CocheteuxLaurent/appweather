@@ -100,14 +100,37 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
         elevation: 0,
-        title: Text(
-          _currentCity + ',' + ' ' + _currentCountry ?? "loading",
-          style: const TextStyle(
-            fontFamily: 'Inter',
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              _currentCity ?? "loading",
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
+            const Text(
+              ',',
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
+            Text(
+              _currentCountry ?? "loading",
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ],
         ),
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
@@ -145,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.close),
+                        child: const Icon(Icons.close),
                       ),
                     ),
                   ),
@@ -202,8 +225,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           WeatherCard(
-            lat: _currentPosition!.longitude.toString(),
-            long: _currentPosition!.latitude.toString(),
+            lat: _currentPosition?.longitude.toString() ?? "loading",
+            long: _currentPosition?.latitude.toString() ?? "loading",
           ),
           /*
       FutureBuilder(
