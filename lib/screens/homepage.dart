@@ -1,5 +1,6 @@
 import 'package:appweather/class/classWeather.dart';
 import 'package:appweather/components/weather_card.dart';
+import 'package:appweather/components/weather_card_details.dart';
 import 'package:appweather/screens/nextday.dart';
 import 'package:appweather/screens/registeredlocations.dart';
 import 'package:appweather/screens/search.dart';
@@ -234,6 +235,17 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           */
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 20,
+              right: 20,
+            ),
+            child: WeatherCardDetails(
+              lat: _currentPosition!.longitude.toString(),
+              long: _currentPosition!.latitude.toString(),
+            ),
+          ),
         ],
       ),
     );

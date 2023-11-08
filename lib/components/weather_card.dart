@@ -61,7 +61,7 @@ class _WeatherCardState extends State<WeatherCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    temp.toString(),
+                    temp.toString() + '°',
                     style: const TextStyle(
                       fontSize: 25,
                       fontFamily: 'Inter',
