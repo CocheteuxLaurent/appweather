@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:appweather/class/classWeather.dart';
 import '../api/api_service.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WeatherCard extends StatefulWidget {
   WeatherCard({
@@ -61,6 +62,7 @@ class _WeatherCardState extends State<WeatherCard> {
                 //   width: 50,
                 //   scale: 4,
                 // ),
+                //SvgPicture.asset('asset/$icon.svg'),
               ],
             ),
             Padding(
@@ -83,7 +85,7 @@ class _WeatherCardState extends State<WeatherCard> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  formattedDate + '.',
+                  formattedDate,
                   style: const TextStyle(
                     fontSize: 18,
                     fontFamily: 'Inter',
@@ -91,12 +93,27 @@ class _WeatherCardState extends State<WeatherCard> {
                   ),
                 ),
                 const Text(
+                  '.',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SvgPicture.asset('assets/Ellipse.svg'),
+                const Text(
                   '  ',
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w400,
                   ),
+                ),
+                SizedBox(
+                  width: 5,
                 ),
                 Text(
                   formattedTime,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:appweather/class/classWeather.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../api/api_service.dart';
 
 class WeatherCardDetails extends StatefulWidget {
@@ -72,25 +73,48 @@ class _WeatherCardDetailsState extends State<WeatherCardDetails> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  color: const Color.fromRGBO(255, 255, 255, 0.5),
-                  child: SizedBox(
-                    width: double.maxFinite,
-                    height: 150,
+              SizedBox(
+                height: 50,
+              ),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                color: Color.fromRGBO(234, 239, 255, 1),
+                child: Container(
+                  width: 900,
+                  height: 150,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('Lever du soleil'),
-                            const Text('Coucher du soleil'),
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 15,
+                                top: 10,
+                              ),
+                              child: Text('Lever du soleil'),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                right: 15,
+                                top: 10,
+                              ),
+                              child: Text('Coucher du soleil'),
+                            ),
                           ],
-                        )
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: SvgPicture.asset('assets/moon.svg'),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
