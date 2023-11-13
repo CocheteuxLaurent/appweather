@@ -23,105 +23,163 @@ class _WeatherCardDetailsState extends State<WeatherCardDetails> {
 
   @override
   Widget build(BuildContext context) {
+    double sliderValue = 0;
+
     return FutureBuilder(
-        future: WeatherFunction.getWeather(
-            widget.lat.toString(), widget.long.toString()),
-        builder: (context, snap) {
-          var icon = snap.data?.icon ?? "loading";
-          var temp = snap.data?.temp;
-          return Column(
-            children: [
-              /*
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    child: Text('Aujourd\'hui'),
+      future: WeatherFunction.getWeather(
+          widget.lat.toString(), widget.long.toString()),
+      builder: (context, snap) {
+        var icon = snap.data?.icon ?? "loading";
+        var temp = snap.data?.temp;
+        return Column(
+          children: [
+            Row(
+              children: [
+                const Text(
+                  'Aujourd\'hui',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    child: Text('Prochains jours'),
-                  ),
-                  Container(
-                    //margin: const EdgeInsets.only(right: 10),
-                    child: Icon(Icons.keyboard_arrow_right),
-                  ),
-                ],
-              )
-              */
-              Row(
-                children: [
-                  const Text(
-                    'Aujourd\'hui',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  const Spacer(),
-                  const Text(
-                    'Prochains jours',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Icon(Icons.keyboard_arrow_right),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
                 ),
-                color: Color.fromRGBO(234, 239, 255, 1),
-                child: Container(
-                  width: 900,
-                  height: 150,
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                const Spacer(),
+                const Text(
+                  'Prochains jours',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Icon(Icons.keyboard_arrow_right),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              color: const Color.fromRGBO(234, 239, 255, 1),
+              child: Container(
+                width: 900,
+                height: 180,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 15,
+                              top: 10,
+                            ),
+                            child: Text('Lever du soleil'),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              right: 15,
+                              top: 10,
+                            ),
+                            child: Text('Coucher du soleil'),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: SvgPicture.asset('./assets/moon_2.svg'),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Image.asset(
+                              './assets/sun.png',
+                            ),
+                          ),
+                          const Text('8h05'),
+                          const SizedBox(
+                            width: 155,
+                          ),
+                          Image.asset(
+                            './assets/moon.png',
+                          ),
+                          const Text('19h30'),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Row(
                           children: const [
                             Padding(
-                              padding: EdgeInsets.only(
-                                left: 15,
-                                top: 10,
+                              padding: EdgeInsets.only(left: 15),
+                              child: Text(
+                                'Qualité de l’air',
                               ),
-                              child: Text('Lever du soleil'),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                right: 15,
-                                top: 10,
-                              ),
-                              child: Text('Coucher du soleil'),
                             ),
                           ],
                         ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15),
-                              child: SvgPicture.asset('assets/moon.svg'),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: Text(
+                              '${sliderValue.toInt()}',
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                          /*
+                          Expanded(
+                            child: SliderTheme(
+                              data: SliderTheme.of(context).copyWith(
+                                thumbColor: Colors.white,
+                                activeTrackColor: LinearGradient(
+                                  colors: [
+                                    Colors.green,
+                                    Colors.yellow,
+                                    Colors.orange,
+                                    Colors.red,
+                                  ],
+                                  stops: [0, 0.33, 0.66, 1],
+                                ).createShader(
+                                  Rect.fromPoints(
+                                    Offset(0, 0),
+                                    Offset(200, 0),
+                                  ),
+                                ),
+                                inactiveTrackColor: Colors.grey,
+                              ),
+                              child: Slider(
+                                value: sliderValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    sliderValue = value;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                          */
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ],
-          );
-        });
+            ),
+          ],
+        );
+      },
+    );
   }
 }
