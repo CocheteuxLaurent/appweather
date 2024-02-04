@@ -23,7 +23,7 @@ class _WeatherCardDetailsState extends State<WeatherCardDetails> {
 
   @override
   Widget build(BuildContext context) {
-    double sliderValue = 0;
+    double CurrentValue = 0;
 
     return FutureBuilder(
       future: WeatherFunction.getWeather(
@@ -135,9 +135,22 @@ class _WeatherCardDetailsState extends State<WeatherCardDetails> {
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: Text(
-                              '${sliderValue.toInt()}',
+                              '${CurrentValue.toInt()}',
                             ),
                           ),
+                          Expanded(
+                            child: Slider(
+                              value: CurrentValue,
+                              max: 100,
+                              divisions: 1,
+                              thumbColor: Colors.black,
+                              onChanged: (value) {
+                                setState(() {
+                                  CurrentValue = value;
+                                });
+                              },
+                            ),
+                          )
                           /*
                             SliderTheme(
                               data: SliderTheme.of(context).copyWith(
