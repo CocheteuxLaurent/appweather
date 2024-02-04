@@ -21,10 +21,10 @@ class _WeatherCardDetailsState extends State<WeatherCardDetails> {
     super.initState();
   }
 
+  double _currentValue = 0;
+
   @override
   Widget build(BuildContext context) {
-    double CurrentValue = 0;
-
     return FutureBuilder(
       future: WeatherFunction.getWeather(
           widget.lat.toString(), widget.long.toString()),
@@ -135,20 +135,37 @@ class _WeatherCardDetailsState extends State<WeatherCardDetails> {
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: Text(
-                              '${CurrentValue.toInt()}',
+                              '${_currentValue.toInt()}',
                             ),
                           ),
                           Expanded(
-                            child: Slider(
-                              value: CurrentValue,
-                              max: 100,
-                              divisions: 1,
-                              thumbColor: Colors.black,
-                              onChanged: (value) {
-                                setState(() {
-                                  CurrentValue = value;
-                                });
-                              },
+                            child: SliderTheme(
+                              data: SliderTheme.of(context).copyWith(
+                                thumbShape: const RoundSliderThumbShape(
+                                  enabledThumbRadius: 5.0,
+                                ),
+                                trackHeight: 2.0,
+                                tickMarkShape: SliderTickMarkShape.noTickMark,
+                                /* overlayColor: LinearGradient(
+                                  colors: [],
+                                  begin: ,
+                                  stops: ,
+                                  end: ,
+                                ),
+                                */
+                              ),
+                              child: Slider(
+                                value: _currentValue,
+                                min: 0,
+                                max: 100,
+                                divisions: 10,
+                                thumbColor: Colors.black,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _currentValue = value;
+                                  });
+                                },
+                              ),
                             ),
                           )
                           /*
