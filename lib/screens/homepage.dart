@@ -1,4 +1,5 @@
 import 'package:appweather/class/classWeather.dart';
+import 'package:appweather/components/drawer.dart';
 import 'package:appweather/components/weather_card.dart';
 import 'package:appweather/components/weather_card_details.dart';
 import 'package:appweather/screens/nextday.dart';
@@ -19,6 +20,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+
   //instance de la class
   var _currentCity;
   var _currentCountry;
@@ -96,137 +99,69 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldState,
+      drawer: MyDrawer(),
       backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
-        elevation: 1,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              _currentCity ?? "loading",
-              style: const TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-            ),
-            const Text(
-              ',',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-            ),
-            Text(
-              _currentCountry ?? "loading",
-              style: const TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
-        centerTitle: true,
-        backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
-      ),
-      endDrawer: Drawer(
-        width: 200,
-        backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SizedBox(
-                    height: 45,
-                    width: 45,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: InkWell(
-                        onTap: () {},
-                        child: const Icon(Icons.nightlight_outlined),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 45,
-                    width: 45,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Icon(Icons.close),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: const Text('Accueil'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MyHomePage(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Prochain jours'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NextDayPage(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Lieux enregistrés'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const RegisteredLocationsPage(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Rechercher'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SearchPage(),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
       body: Column(
         children: [
+          Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * 0.05,
+              left: MediaQuery.of(context).size.width * 0.38,
+              right: MediaQuery.of(context).size.width * 0.05,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      _currentCity ?? "loading",
+                      style: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const Text(
+                      ',',
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      _currentCountry ?? "loading",
+                      style: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+                GestureDetector(
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        )),
+                    child: const Icon(
+                      Icons.menu,
+                      size: 26,
+                    ),
+                  ),
+                  onTap: () => _scaffoldState.currentState!.openDrawer(),
+                ),
+              ],
+            ),
+          ),
           WeatherCard(
             lat: _currentPosition?.longitude.toString() ?? "loading",
             long: _currentPosition?.latitude.toString() ?? "loading",
