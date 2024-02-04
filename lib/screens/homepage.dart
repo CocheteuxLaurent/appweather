@@ -99,7 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: const Color.fromRGBO(213, 222, 255, 1),
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
-        elevation: 0,
+        elevation: 1,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

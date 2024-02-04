@@ -129,7 +129,7 @@ class _WeatherCardDetailsState extends State<WeatherCardDetails> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 6),
                       Row(
                         children: [
                           Padding(
@@ -138,6 +138,34 @@ class _WeatherCardDetailsState extends State<WeatherCardDetails> {
                               '${sliderValue.toInt()}',
                             ),
                           ),
+                          /*
+                            SliderTheme(
+                              data: SliderTheme.of(context).copyWith(
+                                thumbColor: Colors.white,
+                                overlayColor: const LinearGradient(
+                                  colors: [
+                                    Colors.green,
+                                    Colors.yellow,
+                                    Colors.orange,
+                                    Colors.red,
+                                  ],
+                                  stops: [0, 0.33, 0.66, 1],
+                                )
+                                    .colors
+                                    .first, // Utilisez la première couleur du dégradé
+                                inactiveTrackColor: Colors.grey,
+                              ),
+                              child: Slider(
+                                value: sliderValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    sliderValue = value;
+                                  });
+                                },
+                              ),
+                            ),
+                            */
+
                           /*
                           Expanded(
                             child: SliderTheme(
