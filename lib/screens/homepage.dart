@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         () => _currentPosition = position,
       );
       debugPrint(_currentPosition.toString());
+      debugPrint("hello");
       getCity();
     }).catchError((e) {
       debugPrint(e);
@@ -203,8 +204,8 @@ class _MyHomePageState extends State<MyHomePage> {
               right: 20,
             ),
             child: WeatherCardDetails(
-              lat: _currentPosition!.longitude.toString(),
-              long: _currentPosition!.latitude.toString(),
+              lat: _currentPosition?.longitude.toString() ?? "loading",
+              long: _currentPosition?.latitude.toString() ?? "loading",
             ),
           ),
         ],
